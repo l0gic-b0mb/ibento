@@ -68,6 +68,10 @@ app.get("/events/:id", isLoggedIn,function(req,res){
 	});
 });
 
+app.get("/event/new",function(req,res){
+	res.send("Under Construction");
+})
+
 //====AUTH ROUTES===== //
 
 app.get("/register",function(req,res){
