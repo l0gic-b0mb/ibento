@@ -1,16 +1,21 @@
-
-<!DOCTYPE html>
-<html>
 <head>
-  <link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400|Roboto:100,300i|Rochester" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400|Roboto:100,300i|Rochester" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-  <div class="header" >
+
+<div class="header" >
   <div class="tagline" >
     <span>i</span>bento
   </div>
+</div>
+<div class="navbar" >
+<% if(currentUser) { %>
+<a href="/logout" >Logout</a><a href="/event/new">Create Event</a>
+<% } %>
+<% if(!currentUser) { %>
+<a href="/login" >Login</a><a href="/register">Register</a>
+<% } %>
 </div>
 <div class="content" >
   <% events.forEach(function(event){ %>
@@ -43,6 +48,3 @@
   </div>
   <% }) %>
 </div>
-
-</body>
-</html>

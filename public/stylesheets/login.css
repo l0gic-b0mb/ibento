@@ -1,0 +1,145 @@
+body {
+  margin:0;
+  font-family:'Roboto Slab', Segoe UI, sans-serif;
+}
+
+div,p {padding:0;margin:0;box-sizing:border-box;}
+.header {
+  width:100%;
+  text-align:center;
+  background:black;color:white;
+}
+.tagline {
+  font-size:24px;
+  line-height:28px;
+  font-weight:100;
+  margin:0 auto;
+  max-width:640px;
+  padding:48px;
+}
+.tagline span {
+  font-weight:300;
+}
+.regForm {
+  color:black;
+	background-color:white;
+	text-align:left;
+	max-width:960px;
+	margin:0px auto;
+	font-weight:300;
+  border-radius:2px;
+	overflow:hidden;
+  padding:60px;
+	box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  margin-top:-20px;
+	
+}
+.regForm h2 {
+  text-align:center;
+  font-size:36px;
+  font-family:'Rochester',sans-serif;
+}
+.regForm button {
+  background-color:#007f8c;
+  padding:10px 26px;
+  color:white;
+  border-radius:4px;
+  transition:all 300ms linear;
+  border:0;
+}
+.regForm button:hover {
+  background-color:#003a42; 
+}
+.group 			  { 
+  position:relative; 
+  margin-bottom:45px; 
+
+}
+input 				{
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:300px;
+  border:none;
+  border-bottom:1px solid #757575;
+    box-sizing:border-box;
+}
+input:focus 		{ outline:none; }
+
+/* LABEL ======================================= */
+label 				 {
+  color:#999; 
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+/* active state */
+input:focus ~ label, input:valid ~ label 		{
+  top:-20px;
+  font-size:14px;
+  color:#5264AE;
+}
+
+/* BOTTOM BARS ================================= */
+.bar 	{ position:relative; display:block; width:300px; }
+.bar:before, .bar:after 	{
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background:#5264AE; 
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+
+/* active state */
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+  width:50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+  position:absolute;
+  height:60%; 
+  width:100px; 
+  top:25%; 
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}
+
+/* active state */
+input:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+	from { background:#5264AE; }
+  to 	{ width:0; background:transparent; }
+}

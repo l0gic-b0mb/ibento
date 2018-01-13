@@ -1,6 +1,35 @@
-<h1>login!</h1>
-<form action="/login" method="POST">
-	<input type="text" name="username" placeholder="username">
-	<input type="password" name="password" placeholder="password">
-	<input type="submit" value="Login!">
-</form>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/login.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400|Roboto:100,300i|Rochester" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="header" >
+  <div class="tagline" >
+    <span>i</span>bento
+  </div>  
+  
+</div>
+<div class="regForm" >
+  <h2>
+    Ibento Login
+  </h2>
+    <form name="register" action="/login" method="POST" >
+      <div class="group">      
+      <input type="email" name="email" required>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Email</label>
+    </div>
+       <div class="group">      
+      <input type="password" name="password" required>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Password</label>
+    </div>
+      <button type="submit" >Submit</button>
+  </form>
+  </div>
+</body>
+</html>
