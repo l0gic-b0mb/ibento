@@ -1,3 +1,110 @@
-body{
-	background: purple;
+body {
+  margin:0;
+  font-family:'Roboto Slab', Segoe UI, sans-serif;
+  
+}
+div,p {
+  box-sizing:border-box;
+  padding:0;margin:0;
+}
+
+.header {
+  width:100%;
+  text-align:center;
+  background:black;color:white;
+}
+.tagline {
+  font-size:24px;
+  line-height:28px;
+  font-weight:100;
+  margin:0 auto;
+  max-width:640px;
+  padding:28px;
+}
+.tagline span {
+  font-weight:300;
+}
+
+.eventCard {
+	max-width:768px;
+	margin:18px auto;
+	font-weight:300;
+	border-radius:2px;
+	overflow:hidden;
+	box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+.eventCard div[data-index="1"] {
+  display:table;
+	width:100%;
+	min-height:148px;
+	background-color:white;
+}
+
+.eventCard div[data-index="2"] {
+  display:table-cell;
+	width:198px;
+	max-width:198px;
+	height:148px;
+	background-size:cover;
+	margin:0 auto;
+  background:url("http://www.projectorcentral.com/images/articles/4-3%20Bristlecone%20Pines.jpg")
+}
+.eventCard div[data-index="3"] {
+	display:table-cell;
+	padding:8px;
+	padding-left:0;
+  position:relative;
+/*	vertical-align:middle; */
+}
+.eventCard div[data-index="5"] {
+  position:absolute;
+  bottom:0;
+  padding:8px;
+  width:100%;
+  border-top:1px solid #dedede;
+}
+
+.eventCard div[data-index="3"] p {
+  padding-left:16px;
+}
+.eventCard .date {
+  text-transform:uppercase;
+  font-family:'Roboto',sans-serif;
+  font-size:14px;
+}
+.eventCard .title {
+    margin: 0;
+    line-height: 48px;
+    font-size: 28px;
+    font-family: 'Rochester','Roboto',sans-serif;
+	  font-weight:300;
+}
+
+.eventCard .title a {
+  color:#007f8c;
+  text-decoration:none;
+}
+
+.eventCard .hashtags {
+  font-size:14px;
+  font-weight:400
+}
+@media (max-width:768px) {
+  .eventCard div[data-index] {
+    display:block;
+  }
+  .eventCard .venue {
+    margin-bottom:50px;
+  }
+  .eventCard .date {
+    margin-top:30px;
+  }
+  .eventCard div[data-index="2"] {
+    max-width:280px;
+    width:280px;
+    height:210px
+  }
+}
+
 }

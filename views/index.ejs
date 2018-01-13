@@ -1,6 +1,41 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
-	<script type="text/javascript" src="/scripts/index.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400|Roboto:100,300i|Rochester" rel="stylesheet">
 </head>
 
-<h1>yeh kaam nischay krega</h1>
+<div class="header" >
+  <div class="tagline" >
+    <span>i</span>bento
+  </div>
+</div>
+<div class="content" >
+  <% events.forEach(function(event){ %>
+  <div class="eventCard" >
+    <div data-index="1" >
+      <div data-index="2" style="background-image:url(<%= event.imageURL %>)" >
+        
+      </div>
+      <div data-index="3" >
+        <p class="date" >
+          <%= event.date %>
+        </p>
+        <p class="title" >
+         <a href="<%= event._id %>" ><%= event.title %></a>
+        </p>
+        <p class="venue" >
+          <%= event.department %>
+        </p>
+        <div data-index="5" >
+          <p class="hashtags" >
+            <% event.hashtags.forEach(function(hash){ %>
+               #<%= hash.tag %>&nbsp
+              <% }) %>
+          </p>
+          
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <% }) %>
+</div>
