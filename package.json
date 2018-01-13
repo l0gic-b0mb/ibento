@@ -1,0 +1,17 @@
+{
+  "name": "ibento",
+  "version": "1.0.0",
+  "description": "Ibento manages your events for you",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "clogn, m0j0_j0j0, b0mb",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "mongoose": "^4.13.9"
+  }
+}
