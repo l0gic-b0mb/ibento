@@ -20,6 +20,10 @@ div,p {padding:0;margin:0;box-sizing:border-box;}
 .tagline span {
   font-weight:300;
 }
+.tagline a {
+  text-decoration: none;
+  color: white;
+}
 .eventDeck, .eventXtra {
 	color:black;
 	background-color:white;

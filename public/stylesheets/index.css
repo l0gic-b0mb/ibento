@@ -25,6 +25,24 @@ div,p {
   font-weight:300;
 }
 
+.navbar {
+  padding:20px;
+  max-width: 960px;
+  margin:0 auto;
+  text-align:center;
+
+}
+
+.navbar a {
+  text-decoration: none;
+  background-color: #007f8c;
+  padding: 10px 26px;
+  color: white;
+  border-radius: 4px;
+  transition: all 300ms linear;
+  margin:12px 18px;
+}
+
 .eventCard {
 	max-width:768px;
 	margin:18px auto;

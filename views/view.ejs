@@ -20,7 +20,7 @@
      <% event.hashtags.forEach(function(hash){ %>
                #<%= hash.tag %>&nbsp
               <% }) %>
-      <p>Signed in as <%= currentUser.username %></p>
+      
   </div>
        <div data-index="1" >
          <div data-index="2" ><h2>
@@ -66,10 +66,10 @@ xhr.open("POST", url, true);
 xhr.setRequestHeader("Content-type", "application/json");
 xhr.onreadystatechange = function () { 
     if (xhr.readyState == 4 && xhr.status == 200) {
-        var json = JSON.parse(xhr.responseText);
+        
         console.log("")
     }
-}
+};
 var data = JSON.stringify({"username":"<%= currentUser.username %>"});
 xhr.send(data);
 };
