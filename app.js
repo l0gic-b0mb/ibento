@@ -1,21 +1,67 @@
-var express = require("express"),
-	bodyParser = require("body-parser"),
-	mongoose = require("mongoose"),
-	app = express();
+var express 			= require("express"),
+    app     			= express(),
+    mongoose 			= require("mongoose"),
+    bodyParser 			= require("body-parser"),
+    expressSanitizer    = require("express-sanitizer"),
+    methodOverride 		= require('method-override');
+    passport			= require('passport');
+    localStratergy   	= require('passport-local')
+    Event 				= require("./models/events")
+    User 				= require("./models/users")
 
-app.use(express.static('public'));
-app.use(bodyParser.urlencoded({  extended: true }));
+mongoose.connect("mongodb://localhost/inbento_v1", { useMongoClient: true });
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(expressSanitizer());
 app.set("view engine", "ejs");
+app.use(express.static("public"));
+app.use(methodOverride('_method'));
+
+// PASSPORT CONFIG
+app.use(require("express-session")({
+	secret: "Bhai chalega",
+	resave: false,
+	saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new localStratergy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 
 app.get("/",function(req, res){
-	res.send("Han bhai chal rha h");
+	res.send("working");
+	//res.redirect("/events");
 })
 
-app.get("/index/",function(req,res){
-	res.render("index");
+app.get("/events/",function(req,res){
+	Event.find({},function(err,foundEvent){
+		if(err)
+		{
+			console.log(err)
+		}
+		else
+		{
+			res.render("index", {events: foundEvent});
+		}
+	})
+})
+
+app.get("/events/:id",function(req,res){
+	console.log(req.params.id);
+	Event.findById(req.params.id,function(err,foundEvent){
+		if(err)
+		{
+			console.log(err);
+		}
+		else
+		{
+			console.log(foundEvent);
+			res.render("view", {event: foundEvent});
+		}
+	})
 })
 
 app.listen(6969, function(){
-	console.log("Servingo ibento at porto 6969");
-	console.log("Spanish Yo :P")
+	console.log("Serving ibento at porto 6969");
 })

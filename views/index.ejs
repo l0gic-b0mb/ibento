@@ -1,6 +1,7 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400|Roboto:100,300i|Rochester" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <div class="header" >
@@ -17,10 +18,10 @@
       </div>
       <div data-index="3" >
         <p class="date" >
-          <%= event.date %>
+          <%= event.date.toDateString() %>
         </p>
         <p class="title" >
-         <a href="<%= event._id %>" ><%= event.title %></a>
+         <a href="/events/<%= event._id %>" ><%= event.title %></a>
         </p>
         <p class="venue" >
           <%= event.department %>
