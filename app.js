@@ -3,13 +3,15 @@ var express 			= require("express"),
     mongoose 			= require("mongoose"),
     bodyParser 			= require("body-parser"),
     expressSanitizer    = require("express-sanitizer"),
-    methodOverride 		= require('method-override');
-    passport			= require('passport');
-    localStratergy   	= require('passport-local')
-    Event 				= require("./models/events")
-    User 				= require("./models/users")
+    methodOverride 		= require('method-override'),
+    passport			= require('passport'),
+    localStratergy   	= require('passport-local'),
+    Event 				= require("./models/events"),
+    User 				= require("./models/users"),
+    seedDB 				= require("./seeds")
 
-mongoose.connect("mongodb://localhost/inbento_v1", { useMongoClient: true });
+seedDB();
+mongoose.connect("mongodb://localhost/inbento_v2", { useMongoClient: true });
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(expressSanitizer());
 app.set("view engine", "ejs");
@@ -30,8 +32,7 @@ passport.deserializeUser(User.deserializeUser());
 
 
 app.get("/",function(req, res){
-	res.send("working");
-	//res.redirect("/events");
+	res.redirect("/events");
 })
 
 app.get("/events/",function(req,res){
@@ -49,7 +50,7 @@ app.get("/events/",function(req,res){
 
 app.get("/events/:id",function(req,res){
 	console.log(req.params.id);
-	Event.findById(req.params.id,function(err,foundEvent){
+	Event.findById(req.params.id).populate("organiser presenters").exec(function(err,foundEvent){
 		if(err)
 		{
 			console.log(err);
@@ -59,8 +60,12 @@ app.get("/events/:id",function(req,res){
 			console.log(foundEvent);
 			res.render("view", {event: foundEvent});
 		}
-	})
-})
+	});
+});
+
+//====AUTH ROUTES=====
+
+
 
 app.listen(6969, function(){
 	console.log("Serving ibento at porto 6969");

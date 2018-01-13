@@ -7,11 +7,11 @@ var eventSchema = new mongoose.Schema({
    department: String,
    date: { type: Date, default: Date.now },
    hashtags: [ {tag: String} ],
-   organiser: 
+   organiser: [
    		{
   			type: mongoose.Schema.Types.ObjectId,
   			ref: "User"
-   		},
+   		}],
    presenters: [
       {
          type: mongoose.Schema.Types.ObjectId,
@@ -20,7 +20,7 @@ var eventSchema = new mongoose.Schema({
    	],
    	agenda: [
    		{
-   			agendaDate: Date,
+   			agendaDate: { type: Date, default: Date.now },
    			agendaInfo: String
    		}
    	]
