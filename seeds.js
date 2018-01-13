@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 var Event    = require("./models/events");
+var User     = require("./models/users");
 
 var data = [
    {
@@ -32,13 +33,13 @@ function seedDB(){
 		{
 			console.log(err);
 		}
-		console.log("Removed Campgrounds");
-
+		else{
 		data.forEach(function(seed){
             Event.create(seed, function(err, createdEvent){
                 if(err){
                     console.log(err)
-                } else {
+                }
+                 else {
                     console.log("added an event");
                     //create a comment
                     User.create(
@@ -48,15 +49,17 @@ function seedDB(){
                             if(err){
                                 console.log(err);
                             } else {
-                                createdEvent.presenters.push(createdUser);
+                            	createdEvent.presenters.push(createdUser);
                                 createdEvent.save();
+                                console.log(createdEvent);
                                 console.log("Created new user");
                             }
                         });
-                }
-            });
-        });
-	})
+                	}
+            	});
+        	});
+		}
+	});
 }
 
 module.exports = seedDB;

@@ -10,7 +10,7 @@
   <div class="tagline" >
     <span>i</span>bento
   </div>  
-<div class="eventDeck"> <div data-index="1"><div data-index="2" style="background-image: url(<%= event.imageURL %>);"></div><div data-index="3"><p class="date"><%= event.date %></p><p class="titleF"><%= event.title %></p><p class="department"><%= event.department %></p><p class="button">
+<div class="eventDeck"> <div data-index="1"><div data-index="2" style="background-image: url(<%= event.imageURL %>);"></div><div data-index="3"><p class="date"><%= event.date.toDateString() %></p><p class="titleF"><%= event.title %></p><p class="department"><%= event.department %></p><p class="button">
   <a href="register" class="regBtn" >Register</a>
   </p></div></div></div>
 </div>
@@ -19,6 +19,7 @@
      <% event.hashtags.forEach(function(hash){ %>
                #<%= hash.tag %>&nbsp
               <% }) %>
+      <p>Signed in as <%= currentUser.username %></p>
   </div>
        <div data-index="1" >
          <div data-index="2" ><h2>
@@ -34,7 +35,7 @@
             <div class="agenda">
              
                <% event.agenda.forEach(function(agenda){ %>
-               <p><span><%= agenda.agendaDate %></span><span><%= agenda.agendaInfo %></span></p>
+               <p><span><%= agenda.agendaDate.toDateString() %></span> <span><%= agenda.agendaInfo %></span></p>
               <% }) %>
             </div>
          </div>
@@ -42,9 +43,6 @@
             <h2>
               Organiser
             </h2>
-            <div class="organiser" >
-              <a href="/user/<%= event.organiser.username  %>" ><%= event.organiser.name  %></a>
-            </div>
            
                 <h2>
                    Presenters
@@ -52,7 +50,7 @@
                  <div class="presenters" >
                    <% event.presenters.forEach(function(presenter){ %>
              <p>
-               <a href="/user/<%= event.presenter.username  %>" ><%= event.presenter.name  %></a>
+               <a href="/user/<%= presenter.username  %>" ><%= presenter._id  %></a>
                      </p> 
               <% }) %>
                  </div> 

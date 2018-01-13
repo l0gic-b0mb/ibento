@@ -1,5 +1,7 @@
 var mongoose = require("mongoose");
 
+var passportLocalMongoose = require("passport-local-mongoose");
+// USER - email, name
 var eventSchema = new mongoose.Schema({
    title: String,
    imageURL: String,
@@ -7,11 +9,11 @@ var eventSchema = new mongoose.Schema({
    department: String,
    date: { type: Date, default: Date.now },
    hashtags: [ {tag: String} ],
-   organiser: [
+   organiser: 
    		{
   			type: mongoose.Schema.Types.ObjectId,
   			ref: "User"
-   		}],
+   		},
    presenters: [
       {
          type: mongoose.Schema.Types.ObjectId,

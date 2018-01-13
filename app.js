@@ -11,7 +11,7 @@ var express 			= require("express"),
     seedDB 				= require("./seeds")
 
 seedDB();
-mongoose.connect("mongodb://localhost/inbento_v2", { useMongoClient: true });
+mongoose.connect("mongodb://localhost/inbento_v4", { useMongoClient: true });
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(expressSanitizer());
 app.set("view engine", "ejs");
@@ -29,6 +29,11 @@ app.use(passport.session());
 passport.use(new localStratergy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+app.use(function(req, res, next){
+	res.locals.currentUser = req.user;
+	next();
+})
 
 
 app.get("/",function(req, res){
@@ -48,9 +53,9 @@ app.get("/events/",function(req,res){
 	})
 })
 
-app.get("/events/:id",function(req,res){
+app.get("/events/:id", isLoggedIn,function(req,res){
 	console.log(req.params.id);
-	Event.findById(req.params.id).populate("organiser presenters").exec(function(err,foundEvent){
+	Event.findById(req.params.id).populate("presenters").exec(function(err,foundEvent){
 		if(err)
 		{
 			console.log(err);
@@ -63,9 +68,51 @@ app.get("/events/:id",function(req,res){
 	});
 });
 
-//====AUTH ROUTES=====
+//====AUTH ROUTES===== //
+
+app.get("/register",function(req,res){
+	res.render("register");
+})
+
+app.post("/register",function(req,res){
+	var newUser = new User({username: req.body.username});
+	User.register(newUser, req.body.password, function(err,user){
+		if(err)
+		{
+			console.log(err);
+			return res.render("register");
+		}
+		passport.authenticate("local")(req, res, function(){
+			res.redirect("/events");
+		})
+	})
+})
+
+app.get("/login", function(req,res){
+	res.render("login"); 
+})
+
+app.post("/login",passport.authenticate("local", 
+	{
+		successRedirect: "/events",
+		failureRedirect: "/login"
+	}), function(req,res){
+})
+
+app.get("/logout",function(req,res){
+	req.logout();
+	res.redirect("/events");
+})
+
+function isLoggedIn(req, res, next){
+	if(req.isAuthenticated()){
+		return next();
+	}
+	res.redirect("/login");
+}
 
 
+//====================================================
 
 app.listen(6969, function(){
 	console.log("Serving ibento at porto 6969");

@@ -3,7 +3,7 @@ var passportLocalMongoose = require("passport-local-mongoose");
 // USER - email, name
 var userSchema = new mongoose.Schema({
     username: { type:String, default: "ishank"},
-    password:{ type: String, default: "isahnk"},
+    password: String,
     name: { type:String, default: "Ishank"},
     imageURL: { type:String, default: "https://www.newstatesman.com/sites/all/themes/creative-responsive-theme/images/new_statesman_events.jpg"},
     canCreate: { type:Boolean, default: true},
